@@ -1,0 +1,62 @@
+
+import math
+import tkinter as tk
+
+def count():
+    Y = int(E1.get())
+    M = 4080 * math.exp(0.28*(Y-1960))
+
+    E2 = tk.Entry(root)
+    E2.grid(row=1, column=1)
+    E2.insert(10,'%.2f'%M)
+    
+    P1 = 0.3 * math.pow(0.72,Y-1974) * M
+    P1 = '%.2f' %P1
+    E3 = tk.Entry(root)
+    E3.grid(row=2, column=1)
+    E3.insert(10, P1)
+
+    P2 = 0.048 * math.pow(0.72,Y-1974)*M
+    P2 = '%.2f' %P2
+    E4 = tk.Entry(root)
+    E4.grid(row=3, column=1)
+    E4.insert(10, P2)
+
+def count2():
+    Y2 = int(E5.get())
+    M2 = 4080 * math.exp(0.28*(Y2-1960))
+    data = int(E6.get())
+    sal = int(E7.get())
+
+    need = M2/(data*30) * sal
+    need = '%.2f' %need
+    E9 = tk.Entry(root)
+    E9.grid(row=8, column=1)
+    E9.insert(10, need)
+    
+    
+root = tk.Tk()
+
+tk.Label(root, text = "请输入年份：").grid(row = 0, column = 0)
+tk.Label(root, text = "存储容量：").grid(row = 1, column = 0)
+tk.Label(root, text = "16位价格：").grid(row = 2, column = 0)
+tk.Label(root, text = "32位价格：").grid(row = 3, column = 0)
+tk.Label(root, text = "请输入年份：").grid(row = 5, column = 0)
+tk.Label(root, text = "日指令数").grid(row = 6, column = 0)
+tk.Label(root, text = "月工资数").grid(row = 7, column = 0)
+tk.Label(root, text = "所需成本").grid(row = 8, column = 0)
+E1 = tk.Entry(root)
+E1.grid(row = 0,column = 1)
+E5 = tk.Entry(root)
+E5.grid(row = 5,column = 1)
+E6 = tk.Entry(root)
+E6.grid(row = 6,column = 1)
+E7 = tk.Entry(root)
+E7.grid(row = 7,column = 1)
+
+B1 = tk.Button(root, text = "第一题", command = count).grid(row = 4)
+B1 = tk.Button(root, text = "第二题", command = count2).grid(row = 9)
+root.mainloop()
+
+
+
