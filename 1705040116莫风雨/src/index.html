@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--基本工具-->
+    <script src="../utils/jquery-3.3.1.min.js"></script>
+    <script src="../utils/sweet_alert.js"></script>
+    <link rel="stylesheet" href="../utils/bootstrap.min.css">
+</head>
+<body>
+<div style="width: 30%;display: flex;flex-direction: row;align-items: center;margin-top: 200px;margin-left: 38%">
+    <div style="font-size:20px;margin-bottom: 11px;margin-left: 8px">年份</div>
+    <input style="width: 60%;margin-left: 10px;margin-bottom: 11px;" type="text" class="form-control"
+           name="a" placeholder="请输入年份">
+    <!--<span style="color: red;margin-left: 5px">*</span>-->
+</div>
+<div style="width: 30%;display: flex;flex-direction: row;align-items: center;margin-top: 20px;margin-left: 38%">
+    <div style="font-size:20px;margin-bottom: 11px;margin-left: 8px">字长</div>
+    <input style="width: 60%;margin-left: 10px;margin-bottom: 11px;" type="text" class="form-control"
+           name="b" placeholder="请输入字长">
+    <!--<span style="color: red;margin-left: 5px">*</span>-->
+</div>
+<div style="width: 30%;display: flex;flex-direction: row;align-items: center;margin-top: 20px;margin-left: 37%">
+    <div style="font-size:20px;margin-bottom: 11px;margin-left: 8px">月工资</div>
+    <input style="width: 60%;margin-left: 10px;margin-bottom: 11px;" type="text" class="form-control"
+           name="c" placeholder="请输入月工资">
+    <!--<span style="color: red;margin-left: 5px">*</span>-->
+</div>
+<div style="width: 30%;display: flex;flex-direction: row;align-items: center;margin-top: 20px;margin-left: 36%">
+    <div style="font-size:20px;margin-bottom: 11px;margin-left: 8px">指令条数</div>
+    <input style="width: 60%;margin-left: 10px;margin-bottom: 11px;" type="text" class="form-control"
+           name="d" placeholder="请输入指令条数">
+    <!--<span style="color: red;margin-left: 5px">*</span>-->
+</div>
+<div class="row" style="position: absolute;left: 20%;top: 65%">
+    <div class="col-md-2 column-title" style="width: 75px;top: 5px">需求量</div>
+    <div class="col-md-4 column-value" style="width: 27%">
+        <input type="text" class="form-control" readonly name="m"  style="background-color: white;cursor: default;width: 200px">
+    </div>
+</div>
+<div class="row" style="position: absolute;left: 650px;top: 65%">
+    <div class="col-md-2 column-title" style="width: 60px;left: 30%;top: 5px">价格</div>
+    <div class="col-md-4 column-value" style="width: 47%;left: 40%">
+        <input type="text" class="form-control" name="s" readonly  style="background-color: white;cursor: default;width: 250px">
+    </div>
+</div>
+<div class="row" style="position: absolute;left: 1050px;top: 65%">
+    <div class="col-md-2 column-title" style="width: 60px;left: 30%;top: 5px">成本</div>
+    <div class="col-md-4 column-value" style="width: 47%;left: 40%">
+        <input type="text" class="form-control" name="t" readonly  style="background-color: white;cursor: default;width: 150px">
+    </div>
+</div>
+<button type="button" class="btn btn-primary btn1" id="submit" style="position:absolute;font-size: 18px;left: 47%;top: 50%"
+        data-to ggle="button" onclick="count()"> 提交
+</button>
+</body>
+<script>
+    function count() {
+        var a = $("input[name='a']").val();
+        var b = $("input[name='b']").val();
+        var c = $("input[name='c']").val();
+        var d = $("input[name='d']").val();
+        if(a==""){
+            alert('请输入年份')
+            return;
+        }
+        if(b==""){
+            alert('请输入字长');
+            return;
+        }
+        if(c==""){
+            alert('请输入月工资');
+            return;
+        }
+        if(d=="") {
+            alert('请输入指令条数')
+            return;
+        }
+        a = parseInt(a);
+        b=parseInt(b);
+        c=parseInt(c);
+        d=parseInt(d);
+        var m = 4080 * (Math.exp(0.28 * (a - 1960)));
+        var s;
+        var t;
+        if(b===16){
+            s=(0.048*(Math.pow(0.72,(a-1974))))/b;
+        }else {
+            s=0.003*(Math.pow(0.72,(a-1974)));
+        }
+        t=(a/(d*20))*c;
+        $("input[name='m']").val(m);
+        $("input[name='s']").val(s+"美元/位");
+        $("input[name='t']").val(t+"美元")
+        $("input[name='a']").val("");
+        $("input[name='b']").val("");
+        $("input[name='c']").val("");
+        $("input[name='d']").val("");
+    }
+</script>
+</html>
