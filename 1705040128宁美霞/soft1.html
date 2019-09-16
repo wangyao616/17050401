@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			ul:nth-of-type(1){
+				margin-bottom: 40px;
+
+			}
+			li{
+				list-style: none;
+				margin-top: 20px;
+				font-size: 20px;
+				font-weight: bold;
+			}
+			input[type=text]{
+				width: 400px;
+				height: 30px;
+				border-radius: 20px;
+				
+			}
+			input[type=button]{
+				width: 100px;
+				height: 30px;
+				border-radius: 20px;
+				background: skyblue;
+				border: none;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<ul >
+			<h1>No.1</h1>
+			<li>请输入年份：<input type="text" name="year" id="year" value="" /></li>
+			<li>16位字长：<input type="radio" name="sixteen" value="sixteen" id="sixteen"></li>
+			<li><input type="button" onclick="sum()" value="提交"/></li>
+			<hr >
+			<li>需求估计：<span id="need"></span></li>
+			<li>存储器价格：<span id="price">	</span></li>
+		</ul>
+		<ul>
+			<h1>No.2</h1>
+			<li>请输入年份：<input type="text" id="year2" value="1985" /></li>
+			<li>一名程序员每天可开发的指令数：<input type="text" id="num" value="10" /></li>
+			<li>每月工资：<input type="text" id="salary" value="4000" /></li>
+			<li><input type="button" onclick="sum2()" value="提交"/></li>
+			<hr >
+			<li>使存储器装满程序所需要的成本：<span id="chengben"></span></li>
+			
+		</ul>
+		
+	</body>
+	<script type="text/javascript">
+		function sum(){
+			var year=document.getElementById('year').value;
+			var sixteen=document.getElementById('sixteen').checked;
+			var m;
+			var p;
+			m=4080*Math.pow(Math.E,0.28*(year-1960));
+			// console.log(m);
+			document.getElementById('need').innerHTML=m;
+			if(sixteen){
+				p=0.048*Math.pow(0.72,year-1974);
+				// console.log(p);
+				document.getElementById('price').innerHTML=p;
+			}
+			else{
+				p=0.3*Math.pow(0.72,year-1974);
+				// console.log(p);
+				document.getElementById('price').innerHTML=p;
+			}
+		}
+		function sum2(){
+			var year=document.getElementById('year2').value;
+			var num=document.getElementById('num').value;
+			var salary=document.getElementById('salary').value;
+			var m;
+			var s;
+			m=4080*Math.pow(Math.E,0.28*(year-1960));
+			p=m/(num*30)*salary;
+			document.getElementById('chengben').innerHTML=p;
+		}
+	</script>
+</html>
